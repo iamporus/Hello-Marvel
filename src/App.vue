@@ -1,28 +1,45 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <v-app id="main" :style="{background: $vuetify.theme.themes[theme].background}">
+    <v-app-bar
+      app
+      color="red"
+      dark
+    >
+    
+      <div class="d-flex align-center">
+        <v-img
+          alt="Marvel Logo"
+          contain
+          src="./assets/marvel_logo_red.png"
+          transition="scale-transition"
+          width="60"
+        />
+      </div>
+      
+    </v-app-bar>
+
+    <v-main>
+      <Home/>
+    </v-main>
+  </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Home from './views/Home';
 
 export default {
   name: 'App',
-  components: {
-    HelloWorld
-  }
-}
-</script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+  components: {
+    Home,
+  },
+  computed:{
+    theme(){
+      return 'dark'
+    }
+  },
+  data: () => ({
+    //
+  }),
+};
+</script>

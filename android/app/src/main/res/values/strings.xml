@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">hello-marvel</string>
+    <string name="title_activity_main">hello-marvel</string>
+    <string name="package_name">com.prush.hellomarvel</string>
+    <string name="custom_url_scheme">com.prush.hellomarvel</string>
+</resources>
