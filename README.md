@@ -1,4 +1,5 @@
-# hello-marvel
+# Hello-Marvel
+A Vue JS, Vuetify and Capacitor based SPA that fetches your favorite characters from Marvel Universe. This is a little more than Hello World application to learn these technologies.
 
 ## Project setup
 ```
