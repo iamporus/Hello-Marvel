@@ -1,9 +1,9 @@
 <template>
   <div class="ma-4">
     <ToyCarousel />
-    <v-sheet dark>
+    <v-sheet dark class="pa-3">
       <v-row class="fill-width" align="center" justify="center">
-        <ToyName />
+        <ToyName/>
       </v-row>
       <v-row class="fill-width" align="center" justify="center">
         <ToyRating />
@@ -26,7 +26,7 @@
       ToyCarousel,
       BuyButton,
       ToyName,
-      ToyRating
+      ToyRating,
     },
     data: () => ({
 
