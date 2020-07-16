@@ -34,7 +34,8 @@
 
 <script>
 
-import HeroCard from './HeroCard'
+import HeroCard from './HeroCard';
+import requestHelper from './../../utils';
 
   export default {
     components:{
@@ -48,57 +49,59 @@ import HeroCard from './HeroCard'
     data () {
       return {
         currentIndex: 0,
-        toys: [
-            {
-                id: 0,
-                heroName: "Iron Man",
-                imageUrl: "http://i.annihil.us/u/prod/marvel/i/mg/9/c0/527bb7b37ff55.jpg",
-                rating: 4.5,
-                price: 15.99
-            },
-            {
-                id: 1,
-                heroName: "Spider Man",
-                imageUrl: "http://i.annihil.us/u/prod/marvel/i/mg/3/50/526548a343e4b.jpg",
-                rating: 3,
-                price: 14.35
-            },
-            {
-                id: 2,
-                heroName: "Hulk",
-                imageUrl: "http://i.annihil.us/u/prod/marvel/i/mg/5/a0/538615ca33ab0.jpg",
-                rating: 5,
-                price: 18.79,
-                
-            },
-            {
-                id: 3,
-                heroName: "Dr Strange",
-                imageUrl: "http://i.annihil.us/u/prod/marvel/i/mg/6/f0/5239b5e7d7f70.jpg",
-                rating: 2.5,
-                price: 13.99
-            },
-            {
-                id: 4,
-                heroName: "Thanos",
-                imageUrl: "http://i.annihil.us/u/prod/marvel/i/mg/6/40/5274137e3e2cd.jpg",
-                rating: 4,
-                price: 17.85
-            },
-        ],
+        loadingStatus: true,
+        apikey: this.$appConfig.api.publicKey,
+        privateKey: this.$appConfig.api.privateKey,
+        toys: [],
       }
     },
     methods :{
         changeToyName(){
-            console.log(this.currentIndex);
             this.$root.$emit('toyChanged', this.toys[this.currentIndex]);
         },
+        createToysFromResponse(response){
+        //   console.log(response);
+          response.forEach(element => {
+              var toy = {
+                 id: element.id,
+                heroName: element.name,
+                imageUrl: element.thumbnail.path+".jpg",
+                rating: Math.random() * (5 - 3) + 3,
+                price: Math.round(Math.random() * (25 - 12) + 12)
+              }
+              this.toys.push(toy);
+          });
+        },
+
+        getProducts() {
+        
+        this.loadingStatus = true;
+        
+        const ts = Date.now();
+        const apikey = this.apikey;
+        const privateKey = this.privateKey;
+        const hash = requestHelper.createHashForApi(ts, privateKey, apikey);
+
+        const url = `${this.$appConfig.api.url}/characters?comics=29198`;
+        
+        fetch(url+"&apikey="+apikey+"&ts="+ts+"&hash="+hash+"&limit=10&offset=0")
+        .then(response => response.json())
+        .then(data => (this.createToysFromResponse(data.data.results)))
+        .catch(err => {
+          console.error(err);
+          this.loadingStatus = false
+        //   this.$router.push('/');
+        });
+      },
     },
     created() {
+
+        this.getProducts();
+
         this.$root.$on('cardImageLoaded',() => {
-            console.log('force load');
+            // console.log('force load');
             this.$refs.carousel.$forceUpdate()
-        })
+        });
     }
     
   }
