@@ -2,9 +2,10 @@
   <v-card
     max-width="400"
     class="fill-height"
-    ref="card"
+    height="400"
   >
-    <v-img class="fill-height" :src=imageUrl></v-img>
+    <!-- <v-card-title>Hero</v-card-title> -->
+    <v-img class="fill-height" :src=imageUrl eager></v-img>
   </v-card>
 </template>
 
@@ -14,7 +15,7 @@ export default {
     
     data() {
         return {
-            imageUrl: ""
+            imageUrl: "",
         }
     },
     created() {

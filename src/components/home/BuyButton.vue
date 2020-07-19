@@ -1,26 +1,29 @@
 <template>
     <v-footer absolute dark>
-        <!-- <transition name="slide-fade" mode="out-in"> -->
-        <v-btn block large color="error" class="font-weight-black" :key="priceInDollars"> {{priceInDollars}}$  |  Buy</v-btn>
-        <!-- </transition> -->
+        <v-btn block large color="error" class="font-weight-black"> 
+            <transition name="slide-fade" mode="out-in">
+            <div class="button" :key="priceInDollars">{{priceInDollars}}</div>    
+            </transition>$  |  Buy
+        </v-btn>
     </v-footer>
 </template>
 
 <script>
+
 export default {
     props: [
         'price'
     ],
     data() {
         return {
-            priceInDollars: ""
+            priceInDollars: "",
         }
     },
     created() {
         this.$root.$on('toyChanged',(toy) => {
             this.priceInDollars = toy.price;
         })
-    }
+    },
     
 }
 </script>
@@ -34,7 +37,7 @@ export default {
 }
 .slide-fade-enter, .slide-fade-leave-to
 /* .slide-fade-leave-active for <2.1.8 */ {
-  transform: translateX(10px);
+  transform: translateY(10px);
   opacity: 0;
 }
 </style>
