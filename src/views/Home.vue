@@ -19,6 +19,8 @@
   import BuyButton from './../components/home/BuyButton'
   import ToyName from './../components/home/ToyName'
   import ToyRating from './../components/home/ToyRating'
+  import { Plugins } from '@capacitor/core';
+  const { EchoPlugin } = Plugins;
 
   export default {
     name: 'Home',
@@ -31,5 +33,15 @@
     data: () => ({
 
     }),
+    created() {
+        this.callEcho();
+    },
+    methods:{
+
+        async callEcho() {
+          await EchoPlugin.echo({value : "Hello from VueJS"});
+        },
+    }
+    
   }
 </script>
