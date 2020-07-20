@@ -11,6 +11,7 @@
     "@capacitor/android": "^2.2.1",
     "@capacitor/cli": "^2.2.1",
     "@capacitor/core": "^2.2.1",
+    "@capacitor/ios": "^2.2.1",
     "animated-number-vue": "^1.0.0",
     "core-js": "^3.6.5",
     "materialize-css": "^1.0.0-rc.2",

@@ -5,7 +5,6 @@
       color="red"
       dark
     >
-    
       <div class="d-flex align-center">
         <v-img
           alt="Marvel Logo"
@@ -14,6 +13,10 @@
           transition="scale-transition"
           width="60"
         />
+      </div>
+      <v-spacer/>
+      <div class="button font-weight-black d-flex align-center">
+        Bring Home your Superheroes!
       </div>
       
     </v-app-bar>
@@ -38,8 +41,5 @@ export default {
       return 'dark'
     }
   },
-  data: () => ({
-    //
-  }),
 };
 </script>
